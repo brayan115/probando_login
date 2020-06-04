@@ -21,5 +21,6 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/contact', function () {
-    return view('contact');
+    return view('Contacts.contact');
 });
+Route::resource('Contacts', 'ContactController');

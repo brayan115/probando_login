@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Contact;
 class ContactController extends Controller
 {
     /**
@@ -23,7 +23,7 @@ class ContactController extends Controller
      */
     public function create()
     {
-        //
+        return view('Contacts.contact');
     }
 
     /**
@@ -34,7 +34,23 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name'=>'required',
+            'email'=>'required',
+            'phone'=>'required',
+            'web'=>'required',
+            'menssage'=>'required'
+        ]);
+
+        $contact = new Contact([
+            'name' => $request->get('name'),
+            'email' => $request->get('email'),
+            'phone' => $request->get('phone'),
+            'web' => $request->get('web'),
+            'menssage' => $request->get('menssage')
+        ]);
+        $contact->save();
+        return redirect('/aquieslacosa')->with('success', 'Contact saved!');
     }
 
     /**

@@ -11,7 +11,8 @@ class Contact extends Model
         'email',
         'phone',
         'web',
-        'message'       
+        'menssage'       
     ];
+
 
 }
