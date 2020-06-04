@@ -24,3 +24,5 @@ Route::get('/contact', function () {
     return view('Contacts.contact');
 });
 Route::resource('Contacts', 'ContactController');
+Route::get('/aca', function () {
+    return view('aca');});

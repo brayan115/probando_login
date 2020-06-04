@@ -13,7 +13,8 @@ class ContactController extends Controller
      */
     public function index()
     {
-        //
+        $contacts = Contact::all();
+        return view('contacts.index', compact('contacts'));
     }
 
     /**
@@ -50,7 +51,7 @@ class ContactController extends Controller
             'menssage' => $request->get('menssage')
         ]);
         $contact->save();
-        return redirect('/aquieslacosa')->with('success', 'Contact saved!');
+        return redirect('/Contacts')->with('success', 'Contact saved!');
     }
 
     /**
@@ -72,7 +73,8 @@ class ContactController extends Controller
      */
     public function edit($id)
     {
-        //
+        $contact = Contact::find($id);
+        return view('Contacts.edit', compact('contact'));  
     }
 
     /**
@@ -84,7 +86,21 @@ class ContactController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name'=>'required',
+            'phone'=>'required',
+            'email'=>'required'
+        ]);
+
+        $contact = Contact::find($id);
+        $contact->name =  $request->get('name');
+        $contact->email = $request->get('email');
+        $contact->phone = $request->get('phone');
+        $contact->web = $request->get('web');
+        $contact->menssage = $request->get('menssage');
+        $contact->save();
+
+        return redirect('/Contacts')->with('success', 'Contact updated!');
     }
 
     /**
@@ -95,6 +111,9 @@ class ContactController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $contact = Contact::find($id);
+        $contact->delete();
+
+        return redirect('/Contacts')->with('success', 'Contact deleted!');
     }
 }
