@@ -20,9 +20,9 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/contact', function () {
+/*Route::get('/contact', function () {
     return view('Contacts.contact');
-});
+});*/
 Route::resource('Contacts', 'ContactController');
 Route::get('/aca', function () {
     return view('aca');});
